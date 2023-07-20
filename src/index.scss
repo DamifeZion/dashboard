@@ -1,0 +1,1040 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@mixin flexCenter($display, $direction, $items, $content) {
+  display: $display;
+  flex-direction: $direction;
+  place-items: $items;
+  place-content: $content;
+}
+
+//============ R O O T ===============//
+
+$color-primary: #7380ec;
+$color-danger: #ff7782;
+$color-success: #41f1b6;
+$color-warning: #ffbb55;
+$color-white: #fff;
+$color-info-dark: #7d8da1;
+$color-info-light: #dce1eb;
+$color-dark: #363949;
+$color-light: rgba(132, 139, 200, 0.18);
+$color-primary-variant: #111e88;
+$color-dark-variant: #677493;
+$color-background: #f6f6f9;
+
+$card-border-radius: 2rem;
+$border-radius-1: 0.4rem;
+$border-radius-2: 0.8rem;
+$border-radius-3: 1.2rem;
+
+$card-padding-y: 1.2rem;
+$card-padding-x: 1.8rem;
+$padding-1: 1.2rem;
+
+$box-shadow: 0 2rem 3rem $color-light;
+$Aside-width: 13%;
+$Dashboard-width: 73%;
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 0.78rem;
+}
+
+h5 {
+  font-size: 0.77rem;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+a {
+  //for wrapping react icons
+  @include flexCenter(flex, null, center, center);
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+  transition: 0.25s;
+
+  width: fit-content;
+  height: fit-content;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.25s;
+
+    width: 120%;
+    height: 120%;
+  }
+}
+
+.profile-pic {
+  overflow: hidden;
+  border-radius: 50%;
+
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.text-muted {
+  color: $color-info-dark;
+}
+
+.danger {
+  color: $color-danger;
+}
+
+.warning {
+  color: $color-warning;
+}
+
+.success {
+  color: $color-success;
+}
+
+.primary {
+  color: $color-primary;
+}
+
+//============ S T Y L E S ===============//
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  background: $color-background;
+  user-select: none;
+  overflow-x: hidden;
+
+  max-width: 1280px;
+  width: 100%;
+  margin-inline: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.overflow-scroll {
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+//======Component Styles========//
+
+.logo {
+  @include flexCenter(flex, null, center, null);
+  // border: 1px solid blue;
+  margin-top: 0.35rem;
+  overflow: hidden;
+
+  gap: 10px;
+  width: 100%;
+
+  img {
+    width: 1.8rem;
+  }
+
+  h1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+  }
+
+  .close-btn {
+    display: none;
+    position: relative;
+    cursor: pointer;
+    color: $color-dark;
+    transition: color 0.2s;
+    border-radius: 50%;
+    font-size: 1.5rem;
+
+    &:hover {
+      color: $color-danger;
+    }
+  }
+}
+
+.aside-chips {
+  @include flexCenter(flex, null, center, null);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  padding: 0.8rem 0rem 0.8rem 1.3rem;
+  width: 100%;
+  gap: 10px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: $color-primary;
+    transform: translateX(-105%);
+    transition: all 0.3s;
+
+    width: 3%;
+    height: 100%;
+  }
+
+  &:hover {
+    color: $color-primary;
+    background: $color-info-light;
+    transform: translateX(0.2rem);
+  }
+
+  &:hover::after {
+    transform: translateX(0%);
+  }
+
+  h3 {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  p {
+    font-size: 10px;
+    padding: 0.03rem 0.3rem;
+    color: $color-white;
+    background: $color-danger;
+    border-radius: $border-radius-1;
+  }
+}
+
+#logout {
+  //asideChip logout
+  margin-top: 3rem;
+
+  &:hover {
+    color: $color-danger;
+  }
+
+  &::after {
+    background: $color-danger;
+  }
+}
+
+.dashboard-input {
+  @include flexCenter(flex, column, flex-start, null);
+  // border: 1px solid green;
+
+  input {
+    border: none;
+    outline: none;
+    background: $color-info-light;
+    font-size: 0.9rem;
+    border-radius: $border-radius-1;
+    cursor: pointer;
+    transition: 0.25s;
+
+    margin-top: 0.4rem;
+    padding-block: 0.25rem;
+    padding-inline: 0.8rem;
+
+    &:hover {
+      box-shadow: 0px 1px 3.5px $color-dark-variant;
+    }
+  }
+}
+
+.thememode-pc {
+  @include flexCenter(flex, null, flex-start, null);
+  // border: 1px solid red;
+
+  .theme {
+    @include flexCenter(flex, null, null, null);
+
+    margin-right: 1.5rem;
+
+    label {
+      @include flexCenter(flex, null, center, space-between);
+      box-shadow: inset $box-shadow;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      background: $color-primary;
+      transition: 0.25s;
+      overflow: hidden;
+
+      width: 40px;
+      height: 20px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0%, -50%);
+        border-radius: 50%;
+        background: $color-info-light;
+        transition: 0.25s;
+
+        margin-left: 2%;
+        margin-right: 3%;
+        width: 50%;
+        height: 90%;
+      }
+    }
+
+    .moon,
+    .sun {
+      width: 15px;
+      padding: none;
+      margin: none;
+      animation: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    .moon {
+      left: 2px;
+      transform: translate(0, -50%);
+    }
+
+    .sun {
+      right: 2px;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    input[type="checkbox"]:checked + label {
+      background-color: #111e88;
+    }
+
+    input[type="checkbox"]:checked + label::before {
+      transform: translate(100%, -50%);
+    }
+
+  }
+
+  p {
+    text-align: right;
+    line-height: 1.1rem;
+    font-size: 0.8rem;
+
+    margin-right: 0.7rem;
+
+    b {
+      color: $color-dark;
+      font-weight: 800;
+    }
+  }
+
+  img {
+    border-radius: $card-border-radius;
+    cursor: pointer;
+    transition: 0.25s;
+
+    width: 2.8rem;
+
+    &:hover {
+      box-shadow: 0px 0px 0.1rem 0.12rem $color-primary-variant;
+
+      animation: bounce-top 1s linear 0s 1 normal none;
+    }
+
+    @keyframes bounce-top {
+      0% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-15px);
+      }
+      55% {
+        transform: translateY(0);
+      }
+      65% {
+        transform: translateY(-7px);
+      }
+      75% {
+        transform: translateY(0);
+      }
+      82% {
+        transform: translateY(-4px);
+      }
+      87% {
+        transform: translateY(0);
+      }
+      93% {
+        transform: translateY(-2px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.thememode-mobile {
+  @extend .thememode-pc;
+  @include flexCenter(flex, null, center, center);
+
+  .theme {
+    margin-right: 0.8rem;
+  }
+
+  p {
+    display: none;
+  }
+}
+
+.insight-card {
+  @include flexCenter(flex, column, null, null);
+  border-radius: $card-border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  transition: 0.3s;
+  cursor: pointer;
+
+  gap: 1rem;
+  width: 31%;
+  padding: $card-padding-y $card-padding-x;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  a {
+    font-size: 1.5rem;
+    color: $color-white;
+    border-radius: $border-radius-3;
+
+    padding: 0.5rem;
+  }
+
+  .sales-icon {
+    background-color: $color-primary;
+  }
+
+  .expenses-icon {
+    background: $color-danger;
+  }
+
+  .income-icon {
+    background: $color-success;
+  }
+
+  .col2 {
+    @include flexCenter(flex, null, center, space-between);
+
+    width: 100%;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 2.3rem;
+      white-space: nowrap;
+
+      b {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+    }
+
+    .progress {
+      position: relative;
+      overflow: hidden;
+
+      width: 4.3rem;
+      height: 4.3rem;
+
+      p {
+        font-size: 0.8rem;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        z-index: 0;
+      }
+
+      svg {
+        @include flexCenter(flex, null, center, center);
+
+        width: 100%;
+        height: 100%;
+
+        circle {
+          fill: none;
+          stroke: $color-primary;
+          stroke-width: 0.38rem;
+          stroke-linecap: round;
+          stroke-dasharray: 110;
+          stroke-dashoffset: 92;
+        }
+
+        .sales {
+          stroke-dashoffset: -30;
+          stroke-dasharray: 200;
+        }
+
+        .expenses {
+          stroke-dashoffset: 20;
+          stroke-dasharray: 80;
+        }
+
+        .income {
+          stroke-dashoffset: 35;
+          stroke-dasharray: 110;
+        }
+      }
+    }
+  }
+}
+
+.recent-orders {
+  @include flexCenter(flex, column, flex-start, null);
+
+  padding-left: 2rem;
+  padding-right: 1rem;
+  width: 100%;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  table {
+    border-radius: $card-border-radius;
+    text-align: center;
+    font-size: 0.8rem;
+    border-collapse: collapse;
+
+    min-width: 100%;
+    max-width: 100%;
+    padding-block: 1rem;
+
+    th {
+      padding-top: 2rem;
+      padding-bottom: 0.3rem;
+    }
+
+    td {
+      border-top: 0.09rem solid $color-info-light;
+
+      padding-block: 0.9rem;
+    }
+
+    .no-border-top {
+      border: none;
+    }
+
+    .padding-bottom {
+      padding-bottom: 1.5rem;
+    }
+  }
+}
+
+.recent-updates {
+  @include flexCenter(flex, null, flex-start, center);
+  width: 100%;
+
+  gap: 0.6rem;
+
+  h5 {
+    font-weight: 700;
+    word-wrap: break-word;
+
+    line-height: 1.1rem;
+    width: 75%;
+
+    span {
+      font-weight: 400;
+      margin-left: 0.22rem;
+    }
+
+    small {
+      font-weight: 400;
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.sales-analytics {
+  @include flexCenter(flex, row, null, space-between);
+  // border: 1px solid green;
+  border-radius: $border-radius-3;
+  box-shadow: 0 0 2rem 0.15rem rgba(132, 139, 200, 0.18);
+  transition: 0.25s;
+  flex-wrap: wrap;
+
+  width: 100%;
+  padding: $card-padding-y;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  a {
+    background: $color-primary;
+    border-radius: $border-radius-3;
+    color: $color-white;
+
+    padding: 0.55rem;
+  }
+
+  small {
+    font-weight: 600;
+    letter-spacing: 0.03rem;
+  }
+
+  h5 {
+    text-transform: uppercase;
+    span {
+      font-weight: 400;
+      text-transform: capitalize;
+    }
+  }
+
+  .online-icon {
+    background-color: $color-primary;
+  }
+
+  .offline-icon {
+    background: $color-danger;
+  }
+
+  .new-customer-icon {
+    background: $color-success;
+  }
+}
+
+.new-product {
+  @include flexCenter(flex, null, center, center);
+  border: 0.1rem dashed $color-primary-variant;
+  border-radius: $border-radius-3;
+  color: $color-primary-variant;
+  box-shadow: 0 0 2rem 0.15rem rgba(132, 139, 200, 0.18);
+  font-weight: 500;
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  height: 3.8rem;
+  gap: 0.5rem;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+//====GENERAL STYLING=====//
+
+#Page {
+  @include flexCenter(flex, null, flex-start, null);
+  // border: 1.5px solid red;
+
+  width: 98%;
+  margin-inline: auto;
+}
+
+#Aside {
+  @include flexCenter(flex, column, flex-start, null);
+  // border: 1.5px solid green;
+  position: sticky;
+  background: $color-background;
+  top: 0;
+  left: 0;
+
+  width: $Aside-width;
+
+  .aside-chips-container {
+    @include flexCenter(flex, column, flex-start, null);
+
+    // border: 1px solid green;
+    width: 100%;
+    margin-top: 2rem;
+
+    .none {
+      // display: none;
+      color: red;
+    }
+  }
+}
+
+#Rightside {
+  // border: 1.5px solid green;
+  @include flexCenter(flex, column, flex-start, null);
+  // overflow-x: hidden;
+
+  margin-left: 15px;
+  width: 100% - $Aside-width;
+
+  .topnav {
+    // border: 1px solid rebeccapurple;
+    @include flexCenter(flex, null, center, space-between);
+
+    width: 100%;
+    padding-top: 0.7rem;
+
+    a {
+      font-size: 2rem;
+
+      &::after {
+        background: $color-info-light;
+        width: 0;
+        height: 0;
+      }
+
+      &:hover::after {
+        width: 120%;
+        height: 120%;
+      }
+    }
+  }
+
+  .container {
+    // border: 1px solid green;
+    @include flexCenter(flex, null, null, null);
+
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .dashboard {
+    // border: 1px solid blue;
+
+    width: $Dashboard-width;
+
+    .dashboard-insight {
+      @include flexCenter(flex, null, center, space-between);
+
+      width: 100%;
+    }
+
+    .recent-orders-container {
+      border-radius: $card-border-radius;
+      @include flexCenter(flex, column, null, null);
+
+      margin-block: 3rem;
+      width: 100%;
+
+      h2 {
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .overflow-x {
+        box-shadow: 0 0 2rem 0.15rem rgba(132, 139, 200, 0.18);
+        border-radius: $card-border-radius;
+        overflow-x: scroll;
+        transition: 0.25s;
+
+        &:hover {
+          box-shadow: none;
+        }
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      small{
+        place-self: center;
+        cursor: pointer;
+        color: $color-primary;
+        font-size: .9rem;
+        font-weight: 500;
+
+        margin-top: 1.5rem;
+
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .recents {
+    // border: 1px solid red;
+
+    width: 100% - $Dashboard-width;
+
+    h2,
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    .card {
+      // border: 1px solid blue;
+      @include flexCenter(flex, column, null, null);
+      border-radius: $card-border-radius;
+      box-shadow: 0 0 2rem 0.15rem rgba(132, 139, 200, 0.18);
+      transition: 0.25s;
+
+      padding: 1.5rem;
+      margin-top: 1rem;
+      width: 100%;
+      gap: 0.9rem;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    h3 {
+      margin-top: 2rem;
+    }
+
+    .sales-container {
+      @include flexCenter(flex, column, null, null);
+      // border: 1px solid red;
+
+      margin-top: 1rem;
+      gap: 1rem;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (width <= 1180px) {
+  #Aside {
+    position: sticky;
+    top: 0;
+    left: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 0.4rem $color-info-light;
+
+    width: 25%;
+    height: 100vh;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .recents {
+      // border: 1px solid red;
+
+      width: 100%;
+    }
+  }
+
+  #Rightside {
+    width: 100%;
+
+    .dashboard {
+      // border: 1px solid blue;
+      width: 100%;
+    }
+
+    .container {
+      flex-direction: column;
+    }
+
+    .recents {
+      // border: 1px solid pink;
+      @include flexCenter(flex, null, flex-start, null);
+      margin-bottom: 3rem;
+
+      gap: 3.5rem;
+      width: 100%;
+
+      .child1 {
+        width: 50%;
+
+        .card {
+          gap: 1.9rem;
+        }
+      }
+
+      .child2 {
+        width: 50%;
+        h3 {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width <= 769px) {
+  .logo {
+    .close-btn {
+      display: block;
+    }
+  }
+
+  #Aside {
+    position: absolute;
+    background: $color-background;
+    z-index: 10;
+
+    width: 25%;
+
+    .aside-chips-container {
+      @include flexCenter(flex, column, flex-start, null);
+
+      // border: 1px solid green;
+      width: 100%;
+      margin-top: 2rem;
+
+      .none {
+        // display: none;
+        color: red;
+      }
+    }
+  }
+
+  #Right-side {
+    width: 100%;
+
+    .dashboard {
+      width: 100%;
+    }
+  }
+
+  .container {
+    @include flexCenter(flex, column, null, null);
+
+    width: 100%;
+  }
+}
+
+@media screen and (width <= 600px) {
+  $sm-margin-x: 0.9rem;
+
+  #Aside {
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    z-index: 3;
+
+    height: 100vh;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    width: 45%;
+  }
+
+  .topnav {
+    box-shadow: 0 0 0.3rem 0.5rem rgb(54, 57, 73, 0.2);
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: $color-background;
+    z-index: 1;
+
+    padding-block: 0.5rem;
+  }
+
+  #Page {
+    width: 100%;
+
+    .dashboard-input {
+      padding-top: 1rem;
+      padding-left: $sm-margin-x;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      input {
+        padding-block: 0.5rem;
+        padding-inline: 2rem;
+      }
+    }
+
+    .topnav a {
+      margin-left: $sm-margin-x;
+    }
+  }
+
+  .insight-card {
+    box-shadow: 0px 0px 0.5rem 0.04rem rgb(54, 57, 73, 0.2);
+
+    width: 88%;
+    padding-bottom: 2rem;
+  }
+
+  #Rightside {
+    margin-left: 0;
+    
+    .dashboard {
+
+      .recent-orders-container{
+        
+      padding-inline: 1rem;
+      }
+      .dashboard-insight {
+        flex-direction: column;
+
+        margin-top: 3rem;
+        gap: 2.5rem;
+      }
+
+      .recent-orders {
+        width: 650px;
+      }
+    }
+
+    .recents {
+      flex-direction: column;
+
+      margin-bottom: 3rem;
+      padding-inline: 1rem;
+
+      .child1,
+      .child2 {
+        width: 100%;
+      }
+    }
+  }
+
+  .recent-orders-container {
+    h2 {
+      margin-left: $sm-margin-x;
+    }
+  }
+}
+
+@media screen and (width <= 330px) {
+  #Aside {
+    width: 55%;
+  }
+}
